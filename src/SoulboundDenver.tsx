@@ -2,7 +2,7 @@ export const SoulboundDenver = () => {
   return (
     <div
       style={{ background: "rgb(237, 177, 241)" }}
-      className="w-64 h-64 grid place-items-center rounded-lg"
+      className="w-72 h-72 grid place-items-center rounded-lg"
     >
       <svg
         width="190.47619047619048"

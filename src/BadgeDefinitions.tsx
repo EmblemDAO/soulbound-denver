@@ -30,7 +30,7 @@ const definitions = [
 ];
 
 export const BadgeDefinitions = () => (
-  <ul className="mt-10 grid grid-cols-1 gap-x-16 gap-y-8 xl:grid-cols-2 xl:gap-y-10">
+  <ul className="pt-10 grid grid-cols-1 gap-x-16 gap-y-4 xl:grid-cols-2">
     {definitions.map((definition) => {
       return (
         <li className="relative flex items-start">
