@@ -13,10 +13,21 @@ export const Avatar = ({ address, badgesEarned }: AvatarProps) => {
     console.log(canvas);
     if (canvas) {
       const context = canvas.getContext("2d");
+      context?.scale(5, 5);
+      // context?.translate(10, 0);
       console.log(context);
       DrawZzSprite({ context, seed: address, size: 12 + badgesEarned * 4 });
     }
   }, [canvasRef, address, badgesEarned]);
 
-  return <canvas className="w-16 h-4 transform" ref={canvasRef} />;
+  return (
+    <div className="flex-col gap-2">
+      <canvas
+        height={200}
+        width={200}
+        ref={canvasRef}
+        className="border border-gray-50"
+      />
+    </div>
+  );
 };

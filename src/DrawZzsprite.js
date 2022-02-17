@@ -33,7 +33,7 @@ export function DrawZzSprite({
 
   // recenter
   x += (size / 2) | 0;
-  y += 2 | 0;
+  y += (size / 2) | 0;
 
   function DrawSpriteInternal(x, y, outline) {
     // draw each pixel
