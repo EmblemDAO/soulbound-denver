@@ -31,12 +31,14 @@ export function DrawZzSprite({
   const yBias = Random(0.1, -0.1);
   const colorRand = mode == 1 ? 0.08 : 0.04;
 
-  // recenter
-  x += (size / 2) | 0;
-  y += (size / 2) | 0;
+  // // recenter
+  // x += (size / 2) | 0;
+  // y += (size / 2) | 0;
 
   function DrawSpriteInternal(x, y, outline) {
     // draw each pixel
+    let maxX = 0;
+    let maxY = 0;
     randomSeed = seed;
     const passCount = mode == 3 ? 3 : 1;
     for (let pass = 0; pass < passCount; ++pass)
@@ -73,8 +75,15 @@ export function DrawZzSprite({
             1 + 2 * o
           );
           context.fillRect(x - i - o, y + j - o, 1 + 2 * o, 1 + 2 * o);
+
+          const xCalc = x - i - o;
+          const yCalc = y + j - o;
+          if (xCalc < maxX) maxX = xCalc;
+          if (yCalc > maxY) maxY = yCalc;
+          console.log(maxX, maxY);
         }
       }
+    // context.translate(-maxX * 1.5, maxY / 2);
   }
 
   // outline then fill

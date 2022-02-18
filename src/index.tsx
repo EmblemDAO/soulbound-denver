@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import ReactDOM from "react-dom";
 import { BadgeDefinitions } from "./BadgeDefinitions";
+import { Header } from "./Header";
 import "./index.css";
 import { SoulboundDenver } from "./SoulboundDenver";
 import { UserAvatars } from "./UserAvatars";
 
 const App: FC = () => {
   return (
-    <div className="bg-slate-900 h-screen py-12 dark">
+    <div className="bg-slate-900 min-h-screen py-12 dark">
       {/* <Navbar /> */}
       <div className="container mx-auto">
         <div className="flex items-center gap-12">
@@ -17,7 +18,12 @@ const App: FC = () => {
           <BadgeDefinitions />
         </div>
 
-        <UserAvatars />
+        <hr className="my-16" />
+
+        <div className="mt-16">
+          <Header title="Leaderboard" />
+          <UserAvatars />
+        </div>
       </div>
     </div>
   );
