@@ -1,9 +1,12 @@
 import React, { FC } from "react";
 import ReactDOM from "react-dom";
+import { About } from "./About";
 import { BadgeDefinitions } from "./BadgeDefinitions";
+import { ConnectWallet } from "./ConnectWallet";
 import { Header } from "./Header";
 import "./index.css";
 import { SoulboundDenver } from "./SoulboundDenver";
+import { Steps } from "./Steps";
 import { UserAvatars } from "./UserAvatars";
 
 const App: FC = () => {
@@ -15,8 +18,16 @@ const App: FC = () => {
           <div className="shrink-0">
             <SoulboundDenver />
           </div>
-          <BadgeDefinitions />
+          <About />
         </div>
+
+        <hr className="my-16" />
+
+        <Steps />
+
+        <BadgeDefinitions />
+
+        <ConnectWallet />
 
         <hr className="my-16" />
 
