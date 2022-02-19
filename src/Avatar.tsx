@@ -11,7 +11,6 @@ export const Avatar = ({ address, badgesEarned }: AvatarProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = canvasRef.current;
-    console.log(canvas);
     if (canvas) {
       const context = canvas.getContext("2d");
       const size = 12 + badgesEarned * 4;

@@ -80,7 +80,6 @@ export function DrawZzSprite({
           const yCalc = y + j - o;
           if (xCalc < maxX) maxX = xCalc;
           if (yCalc > maxY) maxY = yCalc;
-          console.log(maxX, maxY);
         }
       }
     // context.translate(-maxX * 1.5, maxY / 2);
