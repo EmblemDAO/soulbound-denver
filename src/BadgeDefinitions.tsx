@@ -1,90 +1,58 @@
 import { useQuery } from "@apollo/client";
+import { groupBy } from "lodash";
 import { DEFINITIONS } from "./lib/queries";
+import { Tag } from "./Tag";
 
-const definitions = [
+const colors = [
   {
-    name: "Vintage Believer",
-    description:
-      "Awarded to users who have interacted with any Balancer v1 smart contract.",
     color: "bg-sky-500",
   },
   {
-    name: "Adult Swim",
-    description: "Awarded to users who have created pools on Balancer",
-    color: "bg-amber-500",
-  },
-  {
-    name: "Iron Bank",
-    description: "Awarded to users who have provided liquidity to pools",
     color: "bg-emerald-500",
   },
   {
-    name: "One to One",
-    description:
-      "Awarded to users who have provided liquidity to pools containing stable coins",
-    color: "bg-pink-500",
-  },
-  {
-    name: "Perfectly Balanced",
-    description:
-      "Awarded to users who have achieved BAL tokens in return for providing liquidity to pools. Perfectly balanced, as all things should be.",
-    color: "bg-violet-500",
+    color: "bg-amber-500",
   },
 ];
 
 export const BadgeDefinitions = () => {
   const { loading, error, data } = useQuery(DEFINITIONS);
 
-  console.log(data);
+  if (loading) {
+    return <div>Loading...</div>;
+  } else if (error) {
+    return <div>Error!</div>;
+  }
+
+  const badgeDefinitions = groupBy(data.badgeDefinitions, "metric.id");
 
   return (
     <ul className="pt-10 grid grid-cols-1 gap-x-16 gap-y-4 xl:grid-cols-2">
-      {definitions.map((definition) => {
+      {Object.entries(badgeDefinitions).map(([metric, definitions]) => {
         return (
-          <li className="relative flex items-start">
-            <div
-              className={`w-16 h-16 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none ${definition.color} dark:highlight-white/20`}
-            >
-              <div
-                className="aspect-w-1 aspect-h-1 bg-[length:100%] dark:hidden"
-                style={{
-                  backgroundImage: `url("/_next/static/media/utility-first.e881b21fb6e06478ddff96759b2bb88d.png"`,
-                }}
-              ></div>
-              <div
-                className="hidden aspect-w-1 aspect-h-1 bg-[length:100%] dark:block"
-                style={{
-                  backgroundImage: `url("/_next/static/media/utility-first.026b60de29ca82d161ad911ac5f526af.png"`,
-                }}
-              ></div>
-            </div>
-            <div className="peer group flex-auto ml-6">
-              <h3 className="mb-2 font-semibold text-slate-900 dark:text-slate-200">
-                <a
-                  className="before:absolute before:-inset-3 before:rounded-2xl sm:before:-inset-4"
-                  href="/docs/utility-first"
-                >
-                  {definition.name}
-                  <svg
-                    viewBox="0 0 3 6"
-                    className="ml-3 w-auto h-1.5 overflow-visible inline -mt-px text-slate-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"
+          <li className="border-slate-500 border rounded-lg space-y-4 p-4">
+            {definitions.map((definition, i) => {
+              return (
+                <div className="relative flex items-center justify-between">
+                  <div
+                    className={`w-16 h-16 p-[0.1875rem] rounded-full ring-1 ring-slate-900/10 shadow overflow-hidden flex-none ${colors[i].color} dark:highlight-white/20`}
                   >
-                    <path
-                      d="M0 0L3 3L0 6"
-                      fill="none"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </a>
-              </h3>
-              <div className="prose prose-slate prose-sm text-slate-600 dark:prose-dark">
-                <p>{definition.description}</p>
-              </div>
-            </div>
-            <div className="absolute -z-10 -inset-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 opacity-0 peer-hover:opacity-100 sm:-inset-4"></div>
+                    <div className="aspect-w-1 aspect-h-1 bg-[length:100%] dark:hidden"></div>
+                  </div>
+                  <div className="peer group flex-auto ml-6">
+                    <h3 className="font-semibold text-slate-900 dark:text-slate-200">
+                      {definition.id}
+                    </h3>
+                    <div className="prose prose-slate prose-sm text-slate-500 dark:prose-dark">
+                      <p>{definition.description}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <Tag>{definition.earnedBadgeCount} Winners</Tag>
+                  </div>
+                </div>
+              );
+            })}
           </li>
         );
       })}

@@ -4,6 +4,7 @@ export const DEFINITIONS = gql`
   query Definitions {
     badgeDefinitions {
       id
+      earnedBadgeCount
       metric {
         id
       }

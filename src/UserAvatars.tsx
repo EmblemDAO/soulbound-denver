@@ -63,6 +63,34 @@ const users: User[] = [
     address: "0x7123",
     badgesEarned: 4,
   },
+  {
+    address: "0x7",
+    badgesEarned: 4,
+  },
+  {
+    address: "0x1123",
+    badgesEarned: 2,
+  },
+  {
+    address: "0x2123",
+    badgesEarned: 1,
+  },
+  {
+    address: "0x3123",
+    badgesEarned: 3,
+  },
+  {
+    address: "0x4123",
+    badgesEarned: 3,
+  },
+  {
+    address: "0x5123",
+    badgesEarned: 2,
+  },
+  {
+    address: "0x6123",
+    badgesEarned: 3,
+  },
 ];
 export const UserAvatars = () => {
   const [activeUser, setActiveUser] = useState<User | null>(null);
@@ -74,9 +102,9 @@ export const UserAvatars = () => {
         closeModal={() => setActiveUser(null)}
       />
 
-      {users.map((user) => (
+      {users.map((user, i) => (
         <div onClick={() => setActiveUser(user)}>
-          <Avatar address={user.address} badgesEarned={user.badgesEarned} />
+          <Avatar address={user.address} badgesEarned={i + 1} />
         </div>
       ))}
     </div>
