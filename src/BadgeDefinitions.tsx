@@ -27,7 +27,7 @@ export const BadgeDefinitions = () => {
   const badgeDefinitions = groupBy(data.badgeDefinitions, "metric.id");
 
   return (
-    <ul className="pt-10 grid grid-cols-1 gap-x-16 gap-y-4 xl:grid-cols-2">
+    <ul className="grid grid-cols-1 gap-x-16 gap-y-4 xl:grid-cols-2">
       {Object.entries(badgeDefinitions).map(([metric, definitions]) => {
         return (
           <li className="border-slate-500 border rounded-lg space-y-4 p-4">

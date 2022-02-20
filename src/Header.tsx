@@ -6,8 +6,13 @@ export const Header = ({
   description?: string;
 }) => {
   return (
-    <h2 className="text-white text-4xl mb-10 uppercase tracking-wide font-bold">
-      {title}
-    </h2>
+    <div className="mb-10">
+      <h2 className="text-white text-4xl  uppercase tracking-wide font-bold">
+        {title}
+      </h2>
+      {description && (
+        <p className="mt-3 text-lg text-slate-300">{description}</p>
+      )}
+    </div>
   );
 };

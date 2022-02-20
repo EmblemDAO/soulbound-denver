@@ -2,8 +2,6 @@ import Notify from "bnc-notify";
 import Onboard from "bnc-onboard";
 
 const networkId = 4;
-const rpcUrl =
-  "https://polygon-mainnet.g.alchemy.com/v2/kPjm4uqTytGRefZwydFYDkfneNhFQxcT";
 
 export function initOnboard(subscriptions) {
   return Onboard({
